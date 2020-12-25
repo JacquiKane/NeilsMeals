@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Neil's Meals</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+        .greeterbody {
+            font-family: 'Indie Flower', cursive !important;
+            background: #FDE3A7;
+            /*CAPE HONEY*/
+            margin: 0px;
+            padding: 0px;
+        }
+        
+         ::selection {
+            background: transparent;
+        }
+        
+        .greeterh4 {
+            font-size: 26px;
+            line-height: 1px;
+            font-family: 'Amatic SC', cursive !important;
+        }
+        
+        .color1 {
+            color: #1BBC9B
+        }
+        /*MOUNTAIN MEADOW*/
+        
+        .color2 {
+            color: #C0392B/*TALL POPPY*/
+        }
+        
+        .greetercard {
+            color: #013243;
+            /*SHERPA BLUE*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150;
+            height: 200;
+            background: #e0e1dc;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) perspective(2000px);
+            box-shadow: inset 300px 0 50px rgba(0, 0, 0, .5), 20px 0 60px rgba(0, 0, 0, .5);
+            transition: 1s;
+        }
+        
+        .greetercard:hover {
+            transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
+            box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5), 0 10px 100px rgba(0, 0, 0, .5);
+        }
+        
+        .greetercard:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #BAC1BA;
+            transform-origin: bottom;
+            transform: skewX(-45deg);
+        }
+        
+        .greetercard:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #92A29C;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+        
+        .greetercard .imgBox {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-origin: left;
+            transition: .7s;
+        }
+        
+        .greetercard .bark {
+            position: absolute;
+            background: #e0e1dc;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .7s;
+        }
+        
+        .greetercard .imgBox img {
+            min-width: 250px;
+            max-height: 400px;
+        }
+        
+        .greetercard:hover .imgBox {
+            transform: rotateY(-135deg);
+        }
+        
+        .greetercard:hover .bark {
+            opacity: 1;
+            transition: .6s;
+            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+        }
+        
+        .greetercard .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            padding: 0 0 0 10px;
+            z-index: -1;
+            margin-top: 70px;
+        }
+        
+        .greetercard .details p {
+            font-size: 15px;
+            line-height: 5px;
+            transform: rotate(-10deg);
+            padding: 0 0 0 20px;
+        }
+        
+        .greetercard .details h4 {
+            text-align: center;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        body {
+            background-color: lightblue;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+        .center-me {
+            margin: 0 auto;
+            overflow-x: scroll;
+        }
+        
+        .modalpos {
+            padding-left: 10%;
+            margin-left: 20px;
+        }
+        
+        .container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 4px 16px;
+        }
+        
+        #buttons-container {
+            border: 3px dashed blue;
+            margin: 5%;
+            padding: 5%;
+        }
+        
+        #cards-container {
+            overflow: hidden;
+            margin: 20px;
+        }
+        
+        .cards {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 99999px;
+        }
+        
+        .card {
+            /* Add shadows to create the "card" effect */
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background: #fff;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+            width: 235px;
+            margin: 15px 7.5px;
+        }
+        
+        .card:hover {
+            -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .card .img {
+            max-width: 220px;
+            height: 220px;
+            display: inline-block;
+        }
+        
+        #slide-left-container,
+        #slide-right-container {
+            display: none;
+        }
+        
+        #slide-left-container.active,
+        #slide-right-container.active {
+            display: block;
+            cursor: pointer;
+        }
+        
+        .slide-left,
+        .slide-right {
+            border-color: #fff;
+            border-style: solid;
+            height: 20px;
+            width: 20px;
+            margin-top: 30%;
+        }
+        
+        .slide-left {
+            border-width: 4px 0 0 4px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            margin-left: 40%;
+        }
+        
+        .slide-right {
+            border-width: 4px 4px 0 0;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            margin-left: 22%;
+        }
+        /* card and carousel styles from vocab */
+        
+        .carousel-item.active,
+        .carousel-item-next,
+        .carousel-item-prev {
+            display: block;
+        }
+        
+        .carouselback {
+            background-color: black;
+        }
+        
+        .carouseldef {
+            width: 90%;
+            padding-left: 10%;
+            text-align: left;
+            justify-content: left;
+            color: seashell;
+        }
+        
+        .carouselh3 {
+            color: seashell;
+        }
+        
+        .carouselParagraph {
+            color: azure;
+            width: 80%;
+            justify-content: left;
+            text-align: left;
+            padding-left: 15%;
+        }
+        
+        .modal-dialog {
+            width: 1500px;
+        }
+        
+        .tablequestion {
+            display: table;
+            border: 5px solid blue;
+            padding: 10px;
+            border-collapse: separate;
+            justify-content: left;
+            text-align: left;
+        }
+        
+        table.question-table tbody td {
+            border: solid thin;
+            padding-left: 3px;
+        }
+        
+        table.question-table tbody th {
+            border: solid thin;
+            padding-left: 3px;
+        }
+        
+        .infocell {
+            background-color: powderblue;
+        }
+        
+        .material-icons i {
+            margin-right: -10px;
+            padding-right: -20px;
+        }
+        
+        i.custom {
+            font-size: 2em;
+            color: green;
+        }
+        
+        .oomph {
+            font-style: italic;
+            font-weight: bold;
+        }
+        
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+        }
+        
+        @-webkit-keyframes fadeInDown {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInDown {
+            -webkit-animation-name: fadeInDown;
+            animation-name: fadeInDown;
+        }
+        
+        @-webkit-keyframes fadeInDownBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -2000px, 0);
+                transform: translate3d(0, -2000px, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInDownBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -2000px, 0);
+                transform: translate3d(0, -2000px, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInDownBig {
+            -webkit-animation-name: fadeInDownBig;
+            animation-name: fadeInDownBig;
+        }
+        
+        @-webkit-keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInLeft {
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+        }
+        
+        @-webkit-keyframes fadeInLeftBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-2000px, 0, 0);
+                transform: translate3d(-2000px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInLeftBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-2000px, 0, 0);
+                transform: translate3d(-2000px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInLeftBig {
+            -webkit-animation-name: fadeInLeftBig;
+            animation-name: fadeInLeftBig;
+        }
+        
+        @-webkit-keyframes fadeInRight {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInRight {
+            -webkit-animation-name: fadeInRight;
+            animation-name: fadeInRight;
+        }
+        
+        @-webkit-keyframes fadeInRightBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(2000px, 0, 0);
+                transform: translate3d(2000px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInRightBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(2000px, 0, 0);
+                transform: translate3d(2000px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInRightBig {
+            -webkit-animation-name: fadeInRightBig;
+            animation-name: fadeInRightBig;
+        }
+        
+        @-webkit-keyframes fadeInUp {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInUp {
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+        }
+        
+        @-webkit-keyframes fadeInUpBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 2000px, 0);
+                transform: translate3d(0, 2000px, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInUpBig {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 2000px, 0);
+                transform: translate3d(0, 2000px, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .fadeInUpBig {
+            -webkit-animation-name: fadeInUpBig;
+            animation-name: fadeInUpBig;
+        }
+        
+        @-webkit-keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        .fadeOut {
+            -webkit-animation-name: fadeOut;
+            animation-name: fadeOut;
+        }
+        
+        @-webkit-keyframes fadeOutDown {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+        }
+        
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+        }
+        
+        .fadeOutDown {
+            -webkit-animation-name: fadeOutDown;
+            animation-name: fadeOutDown;
+        }
+        
+        @-webkit-keyframes fadeOutDownBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 2000px, 0);
+                transform: translate3d(0, 2000px, 0);
+            }
+        }
+        
+        @keyframes fadeOutDownBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 2000px, 0);
+                transform: translate3d(0, 2000px, 0);
+            }
+        }
+        
+        .fadeOutDownBig {
+            -webkit-animation-name: fadeOutDownBig;
+            animation-name: fadeOutDownBig;
+        }
+        
+        @-webkit-keyframes fadeOutLeft {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+        
+        @keyframes fadeOutLeft {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+        
+        .fadeOutLeft {
+            -webkit-animation-name: fadeOutLeft;
+            animation-name: fadeOutLeft;
+        }
+        
+        @-webkit-keyframes fadeOutLeftBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(-2000px, 0, 0);
+                transform: translate3d(-2000px, 0, 0);
+            }
+        }
+        
+        @keyframes fadeOutLeftBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(-2000px, 0, 0);
+                transform: translate3d(-2000px, 0, 0);
+            }
+        }
+        
+        .fadeOutLeftBig {
+            -webkit-animation-name: fadeOutLeftBig;
+            animation-name: fadeOutLeftBig;
+        }
+        
+        @-webkit-keyframes fadeOutRight {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+            }
+        }
+        
+        @keyframes fadeOutRight {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+            }
+        }
+        
+        .fadeOutRight {
+            -webkit-animation-name: fadeOutRight;
+            animation-name: fadeOutRight;
+        }
+        
+        @-webkit-keyframes fadeOutRightBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(2000px, 0, 0);
+                transform: translate3d(2000px, 0, 0);
+            }
+        }
+        
+        @keyframes fadeOutRightBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(2000px, 0, 0);
+                transform: translate3d(2000px, 0, 0);
+            }
+        }
+        
+        .fadeOutRightBig {
+            -webkit-animation-name: fadeOutRightBig;
+            animation-name: fadeOutRightBig;
+        }
+        
+        @-webkit-keyframes fadeOutUp {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        
+        @keyframes fadeOutUp {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        
+        .fadeOutUp {
+            -webkit-animation-name: fadeOutUp;
+            animation-name: fadeOutUp;
+        }
+        
+        @-webkit-keyframes fadeOutUpBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -2000px, 0);
+                transform: translate3d(0, -2000px, 0);
+            }
+        }
+        
+        @keyframes fadeOutUpBig {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -2000px, 0);
+                transform: translate3d(0, -2000px, 0);
+            }
+        }
+        
+        .fadeOutUpBig {
+            -webkit-animation-name: fadeOutUpBig;
+            animation-name: fadeOutUpBig;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .site-header .navbar-collapse {
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 10px;
+                width: 100%;
+            }
+        }
+        
+        .site-header .layout-hero {
+            min-height: 20vh;
+        }
+        
+        .site-header .page-section-title {
+            font-size: 3em;
+            font-family: var(--font-family-sans-serif);
+            font-weight: bolder;
+        }
+        
+        .site-header .page-section-text {
+            font-size: 1.2em;
+        }
+        
+        .h3glideup {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+        
+        .site-header {
+            background-color: navy;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 150px;
+        }
+        
+        .site-header .animated {
+            animation-delay: 2s;
+            animation-duration: 1s;
+        }
+        
+        .layout-text {
+            font-size: 2.1em;
+        }
+        
+        .site-nav.inbody {
+            background: var(--secondary);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .site-header .navbar-collapse {
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 10px;
+            }
+        }
+        
+        .site-header .layout-hero {
+            min-height: 20vh;
+        }
+        
+        .site-header .page-section-title {
+            font-size: 3em;
+            font-family: var(--font-family-sans-serif);
+            font-weight: bolder;
+        }
+        
+        .site-header .page-section-text {
+            font-size: 1.2em;
+        }
+        
+        .site-header .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+            margin-bottom: 2px;
+        }
+        
+        .site-header .nav-link:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            max-width: 100px;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background-color: var(--yellow);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-out;
+        }
+        
+        .site-header .nav-link:hover:before {
+            visibility: visible;
+            left: 0;
+            transform: scaleX(1);
+        }
+        
+        .imgUnit {
+            width: 50%;
+            height: auto;
+            border-radius: 15px;
+            border: 5px solid navy;
+            box-shadow: 5px 10px #888888;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .imgUnitBigger {
+            width: 80%;
+            height: auto;
+            border-radius: 15px;
+            border: 5px solid navy;
+            box-shadow: 5px 10px #888888;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        p {
+            padding-right: 5px;
+        }
+        
+        .impossibleparagraph {
+            padding: 5px;
+            text-justify: auto;
+        }
+        
+        .keyquestions {
+            text-align: center;
+            padding-left: 25%;
+            padding-right: auto;
+        }
+        
+        .s2 {
+            font-size: 100%;
+            display: none;
+        }
+        
+        .s2select {
+            font-size: 150%;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+        
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+        /* Rounded sliders */
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="page-hero" class="site-header">
+
+        <nav class="site-nav family-sans text-uppercase navbar navbar-expand-md navbar-dark fixed-top">
+
+            <div class="container-fluid">
+
+
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myTogglerNav" aria-controls="#myTogglerNav" aria-label="Toggle Navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+            </div>
+
+        </nav>
+
+        <section class="layout-hero d-flex align-items-center text-light text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="animated fadeInUp">
+                        <h3 class="page-section-title">Love You Neil!</h3>
+                        <p class="page-section-text">Here's some quick eats tips
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </header>
+
+    <div class="container">
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="container">
+        <div id="slide-left-container">
+            <div class="slide-left">
+            </div>
+        </div>
+        <div id="cards-container">
+            <div class="cards">
+
+
+
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#scrambledeggs" data-highres="images\scrambledeggs.png" href="#">
+                        <img src="images\scrambledeggs.png" alt="scrambled eggs" style="width:100%">
+
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Scrambled Eggs</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#tacochicken" data-highres="images\tacochicken.png" href="#">
+                        <img src="images\tacochicken.png" alt="Vocab Verifier" style="width:100%">
+
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Taco Chicken</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#spaghettib" data-highres="images/spaghetti.png" href="#">
+                        <img src="images\spaghettib.png" alt="Spaghetti" style="width:100%">
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Spaghetti Bolognese</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#mashedpotatoes" data-highres="images\mashedpotatoes.png" href="#">
+                        <img src="images\mashedpotatoes.png" alt="Mashed Potatoes & Chicken" style="width:100%">
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Mashed Potatoes & Chicken</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#chickenfettucine" data-highres="chickenfettucine.png" href="#">
+                        <img src="images\chickenfettucine.png" alt="Chicken Fettucine Alfredo" style="width:100%">
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Easy Chicken Fettucine Alfredo</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <a data-toggle="modal" data-target="#drunkenchicken" data-highres="images\drunkenchicken.png" href="#">
+                        <img src="images\drunkenchicken.png" alt="Drunken Chicken" style="width:100%">
+                    </a>
+                    <div class="container">
+                        <h4>
+                            <b>Drunken Chicken</b>
+                        </h4>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="slide-right-container">
+            <div class="slide-right">
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+    <!--   Modals for each unit -->
+
+    <div class="modal fade" id="keyq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dataLabel">Copyright, Creative Commons</h5>
+
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer ">
+                    <p>Click outside the box to close</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- scrambled eggs-->
+    <div class="modal" id="scrambledeggs" tabindex=-1 aria-labelledby="scrambbledeggslabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Scrambled Eggs</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Plain scrambled eggss</td>
+                            </tr>
+                            <tr>
+                                <td><i class="material-icons custom">stars</i>Butter, <i class="material-icons custom">stars</i>Sea Salt,
+                                    <i class="material-icons custom">stars</i>Black Pepper, <i class="material-icons custom">stars</i>Eggs</td>
+                                <td><i class="material-icons custom">question_answer</i>Add butter to pan or pot, keep on medium heat and stir so less sticking to pan. Add whatever combination of ham,cheese peppers...</td>
+                            </tr>
+
+                            <tr class="trquestion">
+
+                                <td colspan="2" class="infocell">
+                                    Scrambled Egg Burrito
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <i class="material-icons custom">stars</i>Burrito wrap
+                                    <i class="material-icons custom">stars</i>Hot sausage or Choriza cooked and crumbled</td>
+                                <td>
+                                    <i class="material-icons custom">question_answer</i>Sprinkle over Mexican shredded cheese, some cooked crumbled hot sausage or Chorizo, add to burrito and wrap.</td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="infocell">Egg and Cheese Quesadilla
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="material-icons custom">stars</i> Shredded queso cheese or diced queso. <br>
+                                    <i class="material-icons custom">stars</i>Diced peppers
+                                    <i class="material-icons custom">stars</i>Cilantro
+                                </td>
+                                <td>
+                                    <i class="material-icons custom">question_answer</i>
+
+                                    <p>Grease bottom of clean pan and add 1 tortilla. Sprinkle cheese over tortilla. Spread with scrambled egg and other ingredients. Sprinkle cheese again and add second tortilla. Press down with kitchen tool. Flip and brown
+                                        on other side.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Chicken -->
+    <div class="modal" id="tacochicken" tabindex=-1 aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Implications Of Casting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Taco chicken</td>
+                            </tr>
+                            <tr>
+                                <td><i class="material-icons custom">stars</i> Chicken breast, cut into strips<br>
+                                    <i class="material-icons custom">stars</i> Taco Seasoning<br>
+                                    <i class="material-icons custom">stars</i> 1/2 can black or pinto beans<br>
+                                    <i class="material-icons custom">stars</i> Queso sauce or shredded cheese<br>
+                                    <i class="material-icons custom">stars</i> Salad mix or mixed green veggies<br>
+                                </td>
+                                <td><i class="material-icons custom">question_answer</i>
+                                    <p>Add oil and taco seasoning as well as salt and pepper to pan.</p>
+                                    <p>Heat to warm. Cut chicken into strips. Add to oil mixture and cook on medium until chicken is cooked.</p>
+                                    <p>Cook veggies or arrange salad, top with cooked chicken, heated beans and queso.</p>
+                                    <p>Variations - add to burrito to make burrito wrap, save unused chicken and make a chicken and cheese quesadilla with Queso and salsa.</p>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Spaghetti B -->
+    <div class="modal" id="spaghettib" tabindex=-1 aria-labelledby="Spaghetti Bolognese" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Spaghetti Bolognese</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Easy Spaghetti Bolognese
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <i class="material-icons custom">stars</i> 1 lb of beef<br>
+                                    <i class="material-icons custom">stars</i> 1 jar of pasta sauce<br>
+                                    <i class="material-icons custom">stars</i> Spaghetti or other pasta<br>
+                                    <i class="material-icons custom">stars</i> Parmesan, pesto<br>
+                                </td>
+                                <td>
+                                    <i class="material-icons custom">question_answer</i> Add oil to pan, optional to add Italian seasoning and/or garlic (powder of minced). Heat until warm, and then add beef. Fry until beef is cooked, separating with
+                                    utensil. Beef should be crumbly.
+
+                                    <p>
+                                        Stir in the pasta sauce.></p>
+
+                                    <p>Cook pasta. Spoon meat sauce over pasta. Sprinkle with parmesan, add pesto.</p>
+
+                                </td>
+
+                            </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- mashedpotatoes -->
+    <div class="modal" id="mashedpotatoes" tabindex=-1 aria-labelledby="classyLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chicken & Mashed Potatoes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Mashed Potatoes & Chicken</td>
+                            </tr>
+                            <tr>
+                                <td><i class="material-icons custom">stars</i>3 large potatoes?<br>
+                                    <i class="material-icons custom">stars</i> Chicken breast<br>
+                                    <i class="material-icons custom">stars</i> Chicken breast<br>
+                                    <i class="material-icons custom">stars</i> Butter<br>
+                                    <i class="material-icons custom">stars</i> Cream, half & half or milk<br>
+                                    <i class="material-icons custom">stars</i> Mixed veggies or salad<br>
+                                </td>
+                                <td><i class="material-icons custom">question_answer</i>
+                                    <p>Add oil and seasoning (your choice) to a pan. Warm, add the chicken breast and salt and pepper. Fry until done, turning regularly.
+                                    </p>
+                                    <p>Cover the potatoes with water, about 1/2 inch above the potatoes. Bring the potatoes to a boil and add 1/2 teaspoon of salt. Boil the potatoes for 20 to 30 minutes or until they are very easily pierced with a fork and
+                                        the skin pulls away from the potato where cut.
+                                        <p>
+
+                                            Drain the potatoes, and while still hot, use a paper towel to wipe the skin off the potatoes, then add back to the warm pot.
+                                        </p>
+                                        <p>
+                                            Mash potatoes and add the butter. Cover with a lid for the butter to melt (about 3-4 minutes).
+                                        </p>
+                                        Add the half and half (or cream or milk) to the pot and cream the potatoes until smooth. Add salt and black pepper to taste.
+                                    </p>
+                                    <p>Cook the veggies or make the salad.</p>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Fettucine -->
+    <div class="modal" id="chickenfettucine" tabindex=-1 aria-labelledby="objectLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chicken Fettucine Alfredo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Chicken Fettucine</td>
+                            </tr>
+                            <tr>
+                                <td><i class="material-icons custom">stars</i>Chicken breasts<br>
+                                    <i class="material-icons custom">stars</i>Jar of Alfredo sauce
+                                    <br>
+                                </td>
+                                <td><i class="material-icons custom">question_answer</i>
+                                    <p>Add oil and seasoning (Italian, or just salt and pepper) to pan and warm. Cut the chicken into strips and add to pan. Fry until the chicken is cooked.</p>
+                                    <p>Boil Fettucine (or any other pasta) in salty water.</p>
+                                    <p>Drain pasta and add jar of Alfredo sauce. Stir in the chicken.</p>
+                                    <p>Instead of the pasta you can use cubed potatoes, or instant rice. You can save any leftover chicken and use the next day with a different base, like rice or quinoa.</p>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Drunken Chicken -->
+    <div class="modal center-me" id="drunkenchicken" tabindex=-1 aria-labelledby="methodLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yats Drunken Chicken</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="tablequestion question-table">
+                        <tbody>
+                            <tr>
+                                <td class="infocell" colspan="2">Replica Recipe, Drunken CHicken
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="col-md-6 col-xs-6">
+                                    <i class="material-icons custom">stars</i> 1 bottle Pale Ale<br>
+                                    <i class="material-icons custom">stars</i> 1/4 cup coconut or olive oil<br>
+                                    <i class="material-icons custom">stars</i> 1 can (12 oz) stewed tomatoes<br>
+                                    <i class="material-icons custom">stars</i> 2 teaspoons Cayenne Pepper<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon black pepper<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon crushed red pepper<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon Chili Powder<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon Paprika<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon onion powder<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon garlic powder<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon thyme<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon basil<br>
+                                    <i class="material-icons custom">stars</i> 1 teaspoon sage<br>
+                                    <i class="material-icons custom">stars</i> 1/2 teaspoon gumbo file<br>
+                                    <i class="material-icons custom">stars</i> 3/4 cups breadcrumbs<br>
+                                    <i class="material-icons custom">stars</i> 2 bay Leaves<br>
+                                    <i class="material-icons custom">stars</i> 1 pound diced chicken breast<br>
+                                    <i class="material-icons custom">stars</i> White or brown rice, or pasta or bread<br>
+                                </td>
+                                <td>
+                                    <i class="material-icons custom">question_answer</i>
+                                    <p>This is more difficult to prepare, but you can freeze it in portions and have it ready to eat. Keep Yats style garlic bread in the freezer too, or make it with a baguette and some garlic butter.</p>
+                                    <p>
+                                        Turn slow cooker, pressure cooker, instant pot or dutch oven, to low settings (like 4 to 8 hours).
+                                    </p>
+                                    <p>
+                                        Pour in beer, coconut oil or olive oil and stewed tomatoes.
+                                    </p>
+                                    <p>Add all of the spices and stir.</p>
+
+
+                                    <p>Add the cubed chicken and cook on low for 4 to 8 hours. When done, remove the Bay leaves.
+                                    </p>
+                                    <p>Cook either white or brown rice, or fried or baked cubed potatoes to serve with the drunken chicken.</p>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script>
+        function updateSliderArrowsStatus(
+            cardsContainer,
+            containerWidth,
+            cardCount,
+            cardWidth
+        ) {
+            if (
+                $(cardsContainer).scrollLeft() + containerWidth <
+                cardCount * cardWidth + 15
+            ) {
+                $("#slide-right-container").addClass("active");
+            } else {
+                $("#slide-right-container").removeClass("active");
+            }
+            if ($(cardsContainer).scrollLeft() > 0) {
+                $("#slide-left-container").addClass("active");
+            } else {
+                $("#slide-left-container").removeClass("active");
+            }
+        }
+        $(function() {
+            // Scroll products' slider left/right
+            let div = $("#cards-container");
+            let cardCount = $(div)
+                .find(".cards")
+                .children(".card").length;
+            let speed = 1000;
+            let containerWidth = $(".container").width();
+            let cardWidth = 250;
+
+            updateSliderArrowsStatus(div, containerWidth, cardCount, cardWidth);
+
+            //Remove scrollbars
+            $("#slide-right-container").click(function(e) {
+                if ($(div).scrollLeft() + containerWidth < cardCount * cardWidth) {
+                    $(div).animate({
+                        scrollLeft: $(div).scrollLeft() + cardWidth
+                    }, {
+                        duration: speed,
+                        complete: function() {
+                            setTimeout(
+                                updateSliderArrowsStatus(
+                                    div,
+                                    containerWidth,
+                                    cardCount,
+                                    cardWidth
+                                ),
+                                1005
+                            );
+                        }
+                    });
+                }
+                updateSliderArrowsStatus(div, containerWidth, cardCount, cardWidth);
+            });
+            $("#slide-left-container").click(function(e) {
+                if ($(div).scrollLeft() + containerWidth > containerWidth) {
+                    $(div).animate({
+                        scrollLeft: "-=" + cardWidth
+                    }, {
+                        duration: speed,
+                        complete: function() {
+                            setTimeout(
+                                updateSliderArrowsStatus(
+                                    div,
+                                    containerWidth,
+                                    cardCount,
+                                    cardWidth
+                                ),
+                                1005
+                            );
+                        }
+                    });
+                }
+                updateSliderArrowsStatus(div, containerWidth, cardCount, cardWidth);
+            });
+
+            // If resize action ocurred then update the container width value
+            $(window).resize(function() {
+                try {
+                    containerWidth = $("#cards-container").width();
+                    updateSliderArrowsStatus(div, containerWidth, cardCount, cardWidth);
+                } catch (error) {
+                    console.log(
+                        `Error occured while trying to get updated slider container width: 
+            ${error}`
+                    );
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+
+    <script>
+        var includeall = false;
+        $(document).ready(function() {
+            $('input[type=checkbox][id=include2]').change(function() {
+                if ($(this).prop("checked")) {
+                    alert(`${this.value} you will see all 10 units`);
+                    includeall = true;
+                } else {
+                    alert(`${this.value} you will see only material in units 1 through 5`);
+                    includeall = false;
+                }
+                showhide(includeall);
+            });
+        });
+    </script>
+
+
+    <script>
+        function showhide(includesecond) {
+            var allsemester2 = document.getElementsByClassName("s2");
+            for (var val of allsemester2) {
+                if (includeall) {
+                    val.style.display = "inline-block";
+                    // val.style.display = "block";
+                } else {
+                    val.style.display = "none";
+                }
+            }
+
+        }
+    </script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
