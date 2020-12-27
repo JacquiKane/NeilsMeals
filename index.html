@@ -278,6 +278,7 @@
         
         .modal-dialog {
             width: auto;
+            font-size: small;
         }
         
         .modal-body {
@@ -1043,6 +1044,12 @@
 </head>
 
 <body>
+
+    <!-- Testing for scrolling content -->
+
+
+
+
     <header id="page-hero" class="site-header">
 
         <nav class="site-nav family-sans text-uppercase navbar navbar-expand-md navbar-dark fixed-top">
@@ -1112,7 +1119,7 @@
 
                 <div class="card">
                     <a data-toggle="modal" data-target="#tacochicken" data-highres="images\tacochicken.png" href="#">
-                        <img src="images\tacochicken.png" alt="Vocab Verifier" style="width:100%">
+                        <img src="images\tacochicken.png" alt="Taco Chicken" style="width:100%">
 
                     </a>
                     <div class="container">
@@ -1198,80 +1205,86 @@
     <!--   Modals for each unit -->
 
 
+
     <!-- scrambled eggs-->
-    <div class="modal" id="scrambledeggs" tabindex=-1 aria-labelledby="scrambbledeggslabel" aria-hidden="true">
-        <div class="modal-dialog modal-xs" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Scrambled Eggs</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="container">
+        <div class="modal" id="scrambledeggs" tabindex=-1 aria-labelledby="scrambbledeggslabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Scrambled Eggs</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="tablequestion question-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="infocell" colspan="2">Plain scrambled eggss</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="material-icons custom">stars</i>Butter<br><i class="material-icons custom">stars</i>Sea Salt<br>
+                                            <i class="material-icons custom">stars</i>Black Pepper<br> <i class="material-icons custom">stars</i>Eggs</td>
+                                        <td><i class="material-icons custom">question_answer</i>Add butter to pan or pot, keep on medium heat and stir so less sticking to pan. Add whatever combination of ham,cheese peppers...</td>
+                                    </tr>
+
+                                    <tr class="trquestion">
+
+                                        <td colspan="2" class="infocell">
+                                            Scrambled Egg Burrito
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <i class="material-icons custom">stars</i>Burrito wrap<br>
+                                            <i class="material-icons custom">stars</i>Hot sausage or Choriza cooked and crumbled</td>
+                                        <td>
+                                            <i class="material-icons custom">question_answer</i>Sprinkle over Mexican shredded cheese, some cooked crumbled hot sausage or Chorizo, add to burrito and wrap.</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="infocell">Egg and Cheese Quesadilla
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="material-icons custom">stars</i> Shredded queso cheese or diced queso. <br>
+                                            <i class="material-icons custom">stars</i>Diced peppers<br>
+                                            <i class="material-icons custom">stars</i>Cilantro
+                                        </td>
+                                        <td>
+                                            <i class="material-icons custom">question_answer</i>
+
+                                            <p>Grease bottom of clean pan and add 1 tortilla. Sprinkle cheese over tortilla. Spread with scrambled egg and other ingredients. Sprinkle cheese again and add second tortilla. Press down with kitchen tool. Flip
+                                                and brown on other side.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
                 </div>
-                <div class="modal-body">
-                    <table class="tablequestion question-table">
-                        <tbody>
-                            <tr>
-                                <td class="infocell" colspan="2">Plain scrambled eggss</td>
-                            </tr>
-                            <tr>
-                                <td><i class="material-icons custom">stars</i>Butter, <i class="material-icons custom">stars</i>Sea Salt,
-                                    <i class="material-icons custom">stars</i>Black Pepper, <i class="material-icons custom">stars</i>Eggs</td>
-                                <td><i class="material-icons custom">question_answer</i>Add butter to pan or pot, keep on medium heat and stir so less sticking to pan. Add whatever combination of ham,cheese peppers...</td>
-                            </tr>
-
-                            <tr class="trquestion">
-
-                                <td colspan="2" class="infocell">
-                                    Scrambled Egg Burrito
-                                </td>
-
-                            </tr>
-                            <tr>
-
-                                <td>
-                                    <i class="material-icons custom">stars</i>Burrito wrap
-                                    <i class="material-icons custom">stars</i>Hot sausage or Choriza cooked and crumbled</td>
-                                <td>
-                                    <i class="material-icons custom">question_answer</i>Sprinkle over Mexican shredded cheese, some cooked crumbled hot sausage or Chorizo, add to burrito and wrap.</td>
-
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="infocell">Egg and Cheese Quesadilla
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <i class="material-icons custom">stars</i> Shredded queso cheese or diced queso. <br>
-                                    <i class="material-icons custom">stars</i>Diced peppers
-                                    <i class="material-icons custom">stars</i>Cilantro
-                                </td>
-                                <td>
-                                    <i class="material-icons custom">question_answer</i>
-
-                                    <p>Grease bottom of clean pan and add 1 tortilla. Sprinkle cheese over tortilla. Spread with scrambled egg and other ingredients. Sprinkle cheese again and add second tortilla. Press down with kitchen tool. Flip and brown
-                                        on other side.</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>
+
+
 
     <!-- Chicken -->
     <div class="modal" id="tacochicken" tabindex=-1 aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Implications Of Casting</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Quick Taco Chicken</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1435,7 +1448,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chicken Fettucine Alfredo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Quick Chicken Fettucine Alfredo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1448,7 +1461,7 @@
                             </tr>
                             <tr>
                                 <td><i class="material-icons custom">stars</i>Chicken breasts<br>
-                                    <i class="material-icons custom">stars</i>Jar of Alfredo sauce
+                                    <i class="material-icons custom">stars</i>Jar Alfredo sauce<br>
                                     <br>
                                 </td>
                                 <td><i class="material-icons custom">question_answer</i>
@@ -1494,7 +1507,7 @@
                             </tr>
 
                             <tr>
-                                <td class="col-md-6 col-xs-6">
+                                <td>
                                     <i class="material-icons custom">stars</i> 1 bottle Pale Ale<br>
                                     <i class="material-icons custom">stars</i> 1/4 cup coconut or olive oil<br>
                                     <i class="material-icons custom">stars</i> 1 can (12 oz) stewed tomatoes<br>
@@ -1516,7 +1529,10 @@
                                 </td>
                                 <td>
                                     <i class="material-icons custom">question_answer</i>
-                                    <p>This is more difficult to prepare, but you can freeze it in portions and have it ready to eat. Keep Yats style garlic bread in the freezer too, or make it with a baguette and some garlic butter.</p>
+                                    <p>This is easy to prepare, but requires specific ingredients - you can get these once and they last a long time. </p>
+                                    <p> You can freeze it in portions and have it ready to eat. Keep Yats style garlic bread in the freezer too, or make it with a baguette and some garlic butter.</p>
+                                    <p>If this turns out too spicy, you can add cream or half and half, to taste. If it's not spicy enough, you can add Louisiana Hot sauce over individual servings.</p>
+                                    <p>The original receipe has 1 teaspoon of molasses, which can be added if needed. We didn't appreciate teh taste so we usually leave it out.</p>
                                     <p>
                                         Turn slow cooker, pressure cooker, instant pot or dutch oven, to low settings (like 4 to 8 hours).
                                     </p>
@@ -1526,9 +1542,10 @@
                                     <p>Add all of the spices and stir.</p>
 
 
-                                    <p>Add the cubed chicken and cook on low for 4 to 8 hours. When done, remove the Bay leaves.
+                                    <p>Add the cubed chicken and cook on low for 3 to 6 hours. When done, remove the Bay leaves.
                                     </p>
-                                    <p>Cook either white or brown rice, or fried or baked cubed potatoes to serve with the drunken chicken.</p>
+                                    <p>Now add the bread crumbs. Note, you can make your own bread crumbs by putting slices of bread or bagels in the liquidizer.</p>
+                                    <p>Cook either white or brown long-grain rice, or fried or baked cubed potatoes to serve with the drunken chicken.</p>
                                 </td>
 
                             </tr>
